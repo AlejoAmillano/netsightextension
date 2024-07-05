@@ -1,0 +1,218 @@
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  height: 200px;
+  background-color: #f4f4f4;
+}
+
+header {
+  color: #fff;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo img {
+  height: 35px;
+}
+
+.logo h3 {
+  color: black;
+  font-weight: 400;
+}
+
+#profile {
+  margin-right: 20px;
+  font-size: 30px;
+  color: #fff;
+  transition: 0.3s;
+}
+#profile:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+#result {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#current-url {
+  font-size: 15px;
+}
+
+.material-icon {
+  color: #999999;
+}
+
+.popup-container {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  gap: 20px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.button {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 12.5rem;
+  margin: 0;
+  padding: 1.5rem 3.125rem;
+  background-color: rgba(42, 42, 42, 1);
+  border: none;
+  border-radius: 0.3125rem;
+  box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:before {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgb(63, 62, 62);
+}
+
+.button span {
+  position: absolute;
+  line-height: 0;
+}
+
+.button span i {
+  transform-origin: center center;
+}
+
+.button span:nth-of-type(1) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.button span:nth-of-type(2) {
+  top: 100%;
+  transform: translateY(0%);
+  font-size: 24px;
+}
+
+.button span:nth-of-type(3) {
+  display: none;
+}
+
+.button span:nth-of-type(4) {
+  display: none;
+}
+
+.active {
+  background-color: rgba(42, 42, 42, 1);
+}
+
+.active:before {
+  width: 100%;
+  transition: width 3s linear;
+}
+
+.active span:nth-of-type(1) {
+  top: -100%;
+  transform: translateY(-50%);
+}
+
+.active span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.active span:nth-of-type(2) i {
+  animation: loading 500ms linear infinite;
+}
+
+.active span:nth-of-type(3) {
+  display: none;
+}
+
+.finished .submit {
+  display: none;
+}
+
+.finished .loading {
+  display: none;
+}
+
+.finished .check {
+  font-size: 24px;
+  animation: scale 0.5s linear;
+}
+
+.finished .check i {
+  transform-origin: center center;
+}
+
+.finished .cross {
+  font-size: 24px;
+  animation: scale 0.5s linear;
+}
+
+.finished .cross i {
+  transform-origin: center center;
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(10);
+  }
+  50% {
+    transform: scale(0.2);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  90% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

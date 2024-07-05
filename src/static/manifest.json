@@ -1,0 +1,27 @@
+{
+  "name": "Netsight",
+  "description": "Anti-phishing extension",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Netsight Extension",
+    "default_icon": "icon.png"
+  },
+  "permissions": ["storage", "tabs", "activeTab"],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://netsight.vercel.app/*"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
