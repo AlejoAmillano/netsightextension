@@ -143,17 +143,7 @@ const App: React.FC<{}> = () => {
 
     if (profileIcon) {
       profileIcon.addEventListener('click', async () => {
-        chrome.storage.local.get('token', (result) => {
-          const token = result.token
-
-          if (token) {
-            // Si hay un token, abrir una nueva pestaña con el dashboard
-            window.open('http://localhost:5173/dashboard/scans', '_blank')
-          } else {
-            // Si no hay un token, abrir una nueva pestaña con la página de login
-            window.open('http://localhost:5173/login', '_blank')
-          }
-        })
+        window.open('https://netsight.vercel.app', '_blank')
       })
     }
 
