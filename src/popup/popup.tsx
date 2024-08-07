@@ -22,14 +22,14 @@ const App: React.FC<{}> = () => {
 
   chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // Obtener el scanId desde localStorage
-    console.log('this message is showing')
     chrome.storage.local.get(['token', 'userId'], (result) => {
-      if (result.token && result.userId) {
-        const userId = result.userId
-        const token = result.token
+      const userId = result.userId
+      const token = result.token
 
-        console.log(token)
+      console.log(token)
+      console.log(userId)
 
+      if (userId && token) {
         fetch(`${process.env.API_URL}scan/user/${userId}`, {
           method: 'GET',
           mode: 'cors',
@@ -40,11 +40,16 @@ const App: React.FC<{}> = () => {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
-            if (data.blacklist) {
+            const hasBlacklist = data.scans.some(
+              (scan) => scan.url === tab.url && scan.blacklist
+            )
+            if (hasBlacklist) {
+              console.log('page is blocked')
               chrome.tabs.update(tabId, {
                 url: 'chrome://net-error/-106',
               })
+            } else {
+              console.log('page is not blocked')
             }
           })
           .catch((error) => {
