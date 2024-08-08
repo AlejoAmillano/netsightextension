@@ -20,47 +20,6 @@ const App: React.FC<{}> = () => {
     currentUrl.textContent = domain
   })
 
-  chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    // Obtener el scanId desde localStorage
-    chrome.storage.local.get(['token', 'userId'], (result) => {
-      const userId = result.userId
-      const token = result.token
-
-      console.log(token)
-      console.log(userId)
-
-      if (userId && token) {
-        fetch(`${process.env.API_URL}scan/user/${userId}`, {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token,
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            const hasBlacklist = data.scans.some(
-              (scan) => scan.url === tab.url && scan.blacklist
-            )
-            if (hasBlacklist) {
-              console.log('page is blocked')
-              chrome.tabs.update(tabId, {
-                url: 'chrome://net-error/-106',
-              })
-            } else {
-              console.log('page is not blocked')
-            }
-          })
-          .catch((error) => {
-            console.error('Error:', error)
-          })
-      } else {
-        console.log('No user or token')
-      }
-    })
-  })
-
   function toggleClass(event: React.TransitionEvent<HTMLButtonElement>) {
     event.currentTarget.classList.toggle('active')
   }
